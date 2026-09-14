@@ -267,19 +267,6 @@
   .foot-links{display:flex; gap:22px; flex-wrap:wrap; font-size:13.5px; color:var(--white-dim);}
   .foot-links a:hover{color:var(--gold);}
   .foot-copy{width:100%; margin-top:24px; font-size:12.5px; color:var(--white-dim); border-top:1px solid var(--line); padding-top:20px;}
-
-  /* ---------- Sticky buy bar ---------- */
-  .sticky-bar{
-    position:fixed; bottom:0; left:0; right:0; z-index:70;
-    background:rgba(10,10,10,0.95); backdrop-filter:blur(10px);
-    border-top:1px solid var(--line);
-    padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px;
-    transform:translateY(100%); transition:transform 0.35s ease;
-  }
-  .sticky-bar.show{transform:translateY(0);}
-  .sticky-bar .sb-price{font-size:14px;}
-  .sticky-bar .sb-price b{color:var(--gold-bright); font-size:17px;}
-  .sticky-bar .btn-gold{padding:12px 22px; font-size:14px;}
 </style>
 </head>
 <body>
@@ -287,7 +274,6 @@
 <header>
   <div class="wrap">
     <div class="brand">MONEY MASTER <span>SYSTEM</span></div>
-    <a href="#pricing" class="hdr-cta">Buy Now</a>
   </div>
 </header>
 
@@ -569,11 +555,6 @@
   </div>
 </footer>
 
-<div class="sticky-bar" id="stickyBar">
-  <div class="sb-price">Money Master System — <b>₦25,000</b></div>
-  <a href="#pricing" class="btn-gold">Buy Now</a>
-</div>
-
 <script>
   // Reveal on scroll
   const revealEls = document.querySelectorAll('.reveal');
@@ -581,15 +562,6 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, {threshold:0.15});
   revealEls.forEach(el=>io.observe(el));
-
-  // Sticky buy bar after hero
-  const stickyBar = document.getElementById('stickyBar');
-  const hero = document.querySelector('.hero');
-  window.addEventListener('scroll', ()=>{
-    const trigger = hero.offsetTop + hero.offsetHeight;
-    if(window.scrollY > trigger){ stickyBar.classList.add('show'); }
-    else{ stickyBar.classList.remove('show'); }
-  });
 
   // Countdown timer (resets each visit — 47h59m59s window)
   let remaining = 47*3600 + 59*60 + 59;
